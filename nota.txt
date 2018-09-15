@@ -1,0 +1,1 @@
+Fine tuning toma un modelo preentrenado, le "congela las capas superiores" (las que extraen caracteristicas mas generales) y luego podemos poner una red neuronal propia.
