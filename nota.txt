@@ -1,1 +1,4 @@
 Fine tuning toma un modelo preentrenado, le "congela las capas superiores" (las que extraen caracteristicas mas generales) y luego podemos poner una red neuronal propia.
+
+para poner procesos en segundo plano:
+$ nohup python fine_tuning.py > ft.out 2> ft.err < /dev/null &
