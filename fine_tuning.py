@@ -14,7 +14,7 @@ from keras.optimizers import SGD
 
 # In[19]:
 
-
+EPOCHS = 100
 train_dir = './dataset/train'
 validation_dir = './dataset/validation'
 
@@ -53,7 +53,7 @@ model = Sequential()
 model.add(vgg_conv)
 
 model.add(Flatten())
-model.add(Dense(1024, activation='relu'))
+model.add(Dense(16384, activation='relu'))
 model.add(Dropout(0.5))
 model.add(Dense(2, activation='softmax'))
 
@@ -113,7 +113,7 @@ model.compile(
 H = model.fit_generator(
 	train_generator,
 	steps_per_epoch=2*train_generator.samples/train_generator.batch_size ,
-	epochs=200,
+	epochs=EPOCHS,
 	validation_data=validation_generator,
 	validation_steps=validation_generator.samples/validation_generator.batch_size,
 	verbose=1
@@ -127,7 +127,7 @@ print("[INFO] ploting...")
 # plot the training loss and accuracy
 plt.style.use("ggplot")
 plt.figure()
-N = 200 # epochs, line 116
+N = EPOCHS
 plt.plot(np.arange(0, N), H.history["loss"], label="train_loss")
 plt.plot(np.arange(0, N), H.history["val_loss"], label="val_loss")
 plt.plot(np.arange(0, N), H.history["acc"], label="train_acc")
