@@ -110,10 +110,10 @@ model.compile(
 
 # Train the Model
 # NOTE that we have multiplied the steps_per_epoch by 2. This is because we are using data augmentation.
-history = model.fit_generator(
+H = model.fit_generator(
 	train_generator,
 	steps_per_epoch=2*train_generator.samples/train_generator.batch_size ,
-	epochs=40,
+	epochs=200,
 	validation_data=validation_generator,
 	validation_steps=validation_generator.samples/validation_generator.batch_size,
 	verbose=1
@@ -122,25 +122,18 @@ history = model.fit_generator(
 # Save the Model
 model.save('da_last4_layers.h5')
 
-# Plot the accuracy and loss curves
-acc = history.history['acc']
-val_acc = history.history['val_acc']
-loss = history.history['loss']
-val_loss = history.history['val_loss']
+print("[INFO] ploting...")
 
-epochs = range(len(acc))
-
-plt.plot(epochs, acc, 'b', label='Training acc')
-plt.plot(epochs, val_acc, 'r', label='Validation acc')
-plt.title('Training and validation accuracy')
-plt.legend()
-
+# plot the training loss and accuracy
+plt.style.use("ggplot")
 plt.figure()
-
-plt.plot(epochs, loss, 'b', label='Training loss')
-plt.plot(epochs, val_loss, 'r', label='Validation loss')
-plt.title('Training and validation loss')
-plt.legend()
-
-plt.show()
-
+N = 200 # epochs, line 116
+plt.plot(np.arange(0, N), H.history["loss"], label="train_loss")
+plt.plot(np.arange(0, N), H.history["val_loss"], label="val_loss")
+plt.plot(np.arange(0, N), H.history["acc"], label="train_acc")
+plt.plot(np.arange(0, N), H.history["val_acc"], label="val_acc")
+plt.title("Training Loss and Accuracy on Male/Female")
+plt.xlabel("Epoch #")
+plt.ylabel("Loss/Accuracy")
+plt.legend(loc="lower left")
+plt.savefig("plot")
