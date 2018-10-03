@@ -1,3 +1,43 @@
+# how to use:
+# python splitData.py --help
+# or
+# python splitData.py --dataset /path/to/dataset/ --n_images 1000 --train 0.9
+# output: directory named "dataset" with data separated by classes with train/validation folders
+# dataset original format:
+# 
+# dataset_folder
+# ├── class1
+# │      ├── im1.jpg
+# │      ├── im2.jpg
+# │      ├── ...
+# │      └── imN.jpg
+# ├── class2
+# │      ├── im1.jpg
+# │      ├── im2.jpg
+# │      ├── ...
+# │      └── imN.jpg
+# ├── ...
+# └── classN
+#        ├── im1.jpg
+#        ├── im2.jpg
+#        ├── ...
+#        └── imN.jpg
+#
+# dataset
+#   ├── train
+#   │   ├── class1
+#   │   │   ├── 000001.jpg
+#   │   │   ├── 000002.jpg
+#   │   │   ├── 000004.jpg
+#   |
+#   ├── validation
+#   │   ├── class1
+#   │   │   ├── 000001.jpg
+#   │   │   ├── 000002.jpg
+#   │   │   ├── 000004.jpg
+
+
+
 import os
 import argparse
 from shutil import copy, rmtree
