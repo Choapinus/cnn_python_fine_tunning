@@ -5,6 +5,8 @@
 
 from __future__ import print_function
 import numpy as np
+import matplotlib
+matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from keras.preprocessing.image import ImageDataGenerator, load_img
 from keras.applications import VGG16
@@ -14,7 +16,7 @@ from keras.optimizers import SGD
 
 # In[19]:
 
-EPOCHS = 100
+EPOCHS = 200
 train_dir = './dataset/train'
 validation_dir = './dataset/validation'
 
@@ -53,7 +55,7 @@ model = Sequential()
 model.add(vgg_conv)
 
 model.add(Flatten())
-model.add(Dense(16384, activation='relu'))
+model.add(Dense(8192, activation='relu'))
 model.add(Dropout(0.5))
 model.add(Dense(2, activation='softmax'))
 
