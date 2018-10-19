@@ -55,7 +55,7 @@ model = Sequential()
 model.add(vgg_conv)
 
 model.add(Flatten())
-model.add(Dense(4096, activation='relu'))
+model.add(Dense(2048, activation='relu'))
 model.add(Dropout(0.5))
 model.add(Dense(2, activation='softmax'))
 
