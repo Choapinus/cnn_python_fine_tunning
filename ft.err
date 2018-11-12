@@ -1,3 +1,0 @@
-Using Theano backend.
-Can not use cuDNN on context None: Disabled by dnn.enabled flag
-Mapped name None to device cuda0: GeForce GTX 1070 (0000:01:00.0)

@@ -39,7 +39,7 @@ vgg_conv.summary()
 # In[12]:
 
 
-for layer in vgg_conv.layers[:-4]: # last 4 layers will be trainable
+for layer in vgg_conv.layers[:-8]: # last 8 layers will be trainable
 	layer.trainable = False
 
 for layer in vgg_conv.layers:
