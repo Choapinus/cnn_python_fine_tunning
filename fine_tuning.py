@@ -26,7 +26,7 @@ INIT_LR = 1e-5
 vgg_conv = VGG16(
 	weights='imagenet',
 	include_top=False,
-	input_shape=(224, 224, 3)
+	input_shape=(im_size, im_size, 3)
 )
 
 
@@ -55,7 +55,7 @@ model = Sequential()
 model.add(vgg_conv)
 
 model.add(Flatten())
-model.add(Dense(512, activation='relu'))
+model.add(Dense(8192, activation='relu'))
 model.add(Dropout(0.5))
 model.add(Dense(2, activation='softmax'))
 
