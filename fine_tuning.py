@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 from keras.preprocessing.image import ImageDataGenerator, load_img
 from keras.applications import VGG16
 from keras.models import Sequential
-from keras.layers import Flatten, Dense, Dropout
+from keras.layers import Dense
 from keras.optimizers import SGD
 
 # In[19]:
@@ -25,7 +25,6 @@ INIT_LR = 1e-5
 
 vgg_conv = VGG16(
 	weights='imagenet',
-	include_top=False,
 	input_shape=(im_size, im_size, 3)
 )
 
@@ -35,31 +34,25 @@ vgg_conv = VGG16(
 
 vgg_conv.summary()
 
+model = Sequential()
+
+for layer in vgg_conv.layers[:-1]: # without the last dense layer (that is the predict layer)
+	model.add(layer)
+
+# add your dense layer with the mount of classes
+
+model.add(Dense(2, activation='softmax', name='predictions'))
 
 # In[12]:
 
 
-for layer in vgg_conv.layers[:-8]: # last 8 layers will be trainable
+for layer in model.layers[:-8]: # last 8 layers will be trainable
 	layer.trainable = False
 
-for layer in vgg_conv.layers:
+for layer in model.layers:
 	print(layer, layer.trainable)
 
-print('total layers:', vgg_conv.layers.__len__())
-
-
-# In[13]:
-
-
-model = Sequential()
-model.add(vgg_conv)
-
-model.add(Flatten())
-model.add(Dense(8192, activation='relu'))
-model.add(Dropout(0.5))
-model.add(Dense(2, activation='softmax'))
-
-model.summary()
+print('total layers:', model.layers.__len__())
 
 
 # In[15]:
@@ -79,8 +72,8 @@ train_datagen = ImageDataGenerator(
 validation_datagen = ImageDataGenerator(rescale=1./255)
 
 # Change the batchsize according to your system RAM
-train_batchsize = 20
-val_batchsize = 20
+train_batchsize = 50
+val_batchsize = 50
 
 # Data Generator for Training data
 train_generator = train_datagen.flow_from_directory(
@@ -122,7 +115,7 @@ H = model.fit_generator(
 )
 
 # Save the Model
-model.save('da_last4_layers.h5')
+model.save('final_last8_layers.h5')
 
 print("[INFO] ploting...")
 
