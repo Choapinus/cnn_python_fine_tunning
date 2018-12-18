@@ -21,18 +21,16 @@ train_dir = './dataset/train'
 validation_dir = './dataset/validation'
 
 im_size = 224
-INIT_LR = 1e-5
+INIT_LR = 1e-3
 
 vgg_conv = VGG16(
 	weights='imagenet',
+	include_top=False,
 	input_shape=(im_size, im_size, 3)
 )
 
 
 # In[3]:
-
-
-vgg_conv.summary()
 
 model = Sequential()
 
@@ -41,6 +39,7 @@ for layer in vgg_conv.layers[:-1]: # without the last dense layer (that is the p
 
 # add your dense layer with the mount of classes
 
+model.add(Dense(250))
 model.add(Dense(2, activation='softmax', name='predictions'))
 
 # In[12]:
@@ -53,6 +52,8 @@ for layer in model.layers:
 	print(layer, layer.trainable)
 
 print('total layers:', model.layers.__len__())
+
+
 
 
 # In[15]:
