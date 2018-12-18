@@ -116,7 +116,7 @@ H = model.fit_generator(
 )
 
 # Save the Model
-model.save('final_last8_layers.h5')
+model.save('lr_1e-3_last8_layers.h5')
 
 print("[INFO] ploting...")
 
