@@ -97,8 +97,8 @@ train_datagen = ImageDataGenerator(
 validation_datagen = ImageDataGenerator(rescale=1./255)
 
 # Change the batchsize according to your system RAM
-train_batchsize = 50
-val_batchsize = 50
+train_batchsize = 100
+val_batchsize = 100
 
 # Data Generator for Training data
 train_generator = train_datagen.flow_from_directory(
