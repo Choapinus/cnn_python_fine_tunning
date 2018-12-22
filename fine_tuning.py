@@ -56,9 +56,8 @@ model.add(Dense(2, activation='softmax', name='predictions'))
 # In[12]:
 
 
-# for layer in model.layers: # last 8 layers will be trainable
-# 	if 'conv' not in layer.name:
-# 		layer.trainable = False
+for layer in model.layers: # last 8 layers will be trainable
+	layer.trainable = False
 
 # conv_layers: [0, 1, 3, 4, 6, 7, 8, 10, 11, 12, 14, 15, 16]
 # 0 => block1_conv1
@@ -76,10 +75,10 @@ model.add(Dense(2, activation='softmax', name='predictions'))
 # 16 => block5_conv3
 
 # si se hace esto, la gpu se queda sin memoria por algun motivo xd
-# model.layers[3].trainable = True
-# model.layers[4].trainable = True
-# model.layers[7].trainable = True
-# model.layers[8].trainable = True
+model.layers[3].trainable = True
+model.layers[4].trainable = True
+model.layers[7].trainable = True
+model.layers[8].trainable = True
 model.layers[10].trainable = True
 model.layers[12].trainable = True
 model.layers[14].trainable = True
