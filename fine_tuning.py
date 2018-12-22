@@ -48,6 +48,30 @@ model.add(Dense(2, activation='softmax', name='predictions'))
 for layer in model.layers[:-8]: # last 8 layers will be trainable
 	layer.trainable = False
 
+# conv_layers: [0, 1, 3, 4, 6, 7, 8, 10, 11, 12, 14, 15, 16]
+# 0 => block1_conv1
+# 1 => block1_conv2
+# 3 => block2_conv1
+# 4 => block2_conv2
+# 6 => block3_conv1
+# 7 => block3_conv2
+# 8 => block3_conv3
+# 10 => block4_conv1
+# 11 => block4_conv2
+# 12 => block4_conv3
+# 14 => block5_conv1
+# 15 => block5_conv2
+# 16 => block5_conv3
+
+models.layers[3].trainable = False
+models.layers[4].trainable = False
+models.layers[7].trainable = False
+models.layers[8].trainable = False
+models.layers[10].trainable = False
+models.layers[12].trainable = False
+models.layers[14].trainable = False
+
+
 for layer in model.layers:
 	print(layer, layer.trainable)
 
