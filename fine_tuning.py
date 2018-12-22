@@ -34,12 +34,17 @@ vgg_conv = VGG16(
 
 model = Sequential()
 
-for layer in vgg_conv.layers[:-1]: # without the last dense layer (that is the predict layer)
+for layer in vgg_conv.layers: # without the last dense layer (that is the predict layer)
 	model.add(layer)
 
 # add your dense layer with the mount of classes
 
-model.add(Dense(250))
+# model.add(Dense(250))
+# model.add(Dense(2, activation='softmax', name='predictions'))
+
+model.add(Flatten())
+model.add(Dense(2**13))
+model.add(Dense(2**9))
 model.add(Dense(2, activation='softmax', name='predictions'))
 
 # In[12]:
