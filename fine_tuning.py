@@ -21,7 +21,7 @@ train_dir = './dataset/train'
 validation_dir = './dataset/validation'
 
 im_size = 224
-INIT_LR = 1e-3
+INIT_LR = 0.1
 
 vgg_conv = VGG16(
 	weights='imagenet',
@@ -140,7 +140,7 @@ H = model.fit_generator(
 )
 
 # Save the Model
-model.save('lr_1e-3_last8_layers.h5')
+model.save('lr_0.1_certain_layers_60_40_train_test.h5')
 
 print("[INFO] ploting...")
 
