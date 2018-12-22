@@ -24,8 +24,8 @@ im_size = 224
 INIT_LR = 0.1
 
 # Change the batchsize according to your system RAM
-train_batchsize = 50
-val_batchsize = 50
+train_batchsize = 100
+val_batchsize = 100
 
 vgg_conv = VGG16(
 	weights='imagenet',
@@ -49,8 +49,8 @@ del vgg_conv
 # model.add(Dense(2, activation='softmax', name='predictions'))
 
 model.add(Flatten())
-model.add(Dense(2**13))
-# model.add(Dense(2**9))
+# model.add(Dense(2**13))
+model.add(Dense(2**9))
 model.add(Dense(2, activation='softmax', name='predictions'))
 
 # In[12]:
