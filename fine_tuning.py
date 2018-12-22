@@ -48,7 +48,7 @@ del vgg_conv
 # model.add(Dense(250))
 # model.add(Dense(2, activation='softmax', name='predictions'))
 
-# model.add(Flatten())
+model.add(Flatten())
 # model.add(Dense(2**13))
 model.add(Dense(2**9))
 model.add(Dense(2, activation='softmax', name='predictions'))
@@ -56,8 +56,8 @@ model.add(Dense(2, activation='softmax', name='predictions'))
 # In[12]:
 
 
-# for layer in model.layers[:-8]: # last 8 layers will be trainable
-# 	layer.trainable = False
+for layer in model.layers[:-8]: # last 8 layers will be trainable
+	layer.trainable = False
 
 # conv_layers: [0, 1, 3, 4, 6, 7, 8, 10, 11, 12, 14, 15, 16]
 # 0 => block1_conv1
@@ -78,11 +78,11 @@ model.add(Dense(2, activation='softmax', name='predictions'))
 # model.layers[4].trainable = True
 # model.layers[7].trainable = True
 # model.layers[8].trainable = True
-model.layers[10].trainable = True
-model.layers[12].trainable = True
-model.layers[14].trainable = True
-model.layers[15].trainable = True
-model.layers[16].trainable = True
+# model.layers[10].trainable = True
+# model.layers[12].trainable = True
+# model.layers[14].trainable = True
+# model.layers[15].trainable = True
+# model.layers[16].trainable = True
 
 
 for layer in model.layers:
