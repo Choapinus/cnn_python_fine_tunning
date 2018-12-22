@@ -63,13 +63,13 @@ for layer in model.layers[:-8]: # last 8 layers will be trainable
 # 15 => block5_conv2
 # 16 => block5_conv3
 
-models.layers[3].trainable = False
-models.layers[4].trainable = False
-models.layers[7].trainable = False
-models.layers[8].trainable = False
-models.layers[10].trainable = False
-models.layers[12].trainable = False
-models.layers[14].trainable = False
+model.layers[3].trainable = False
+model.layers[4].trainable = False
+model.layers[7].trainable = False
+model.layers[8].trainable = False
+model.layers[10].trainable = False
+model.layers[12].trainable = False
+model.layers[14].trainable = False
 
 
 for layer in model.layers:
