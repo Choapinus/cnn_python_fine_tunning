@@ -48,9 +48,9 @@ del vgg_conv
 # model.add(Dense(250))
 # model.add(Dense(2, activation='softmax', name='predictions'))
 
-model.add(Flatten())
+# model.add(Flatten())
 # model.add(Dense(2**13))
-# model.add(Dense(2**9))
+model.add(Dense(2**9))
 model.add(Dense(2, activation='softmax', name='predictions'))
 
 # In[12]:
