@@ -21,7 +21,7 @@ train_dir = './dataset/train'
 validation_dir = './dataset/validation'
 
 im_size = 224
-INIT_LR = 0.1
+INIT_LR = 1e-3
 
 vgg_conv = VGG16(
 	weights='imagenet',
@@ -63,13 +63,13 @@ for layer in model.layers[:-8]: # last 8 layers will be trainable
 # 15 => block5_conv2
 # 16 => block5_conv3
 
-model.layers[3].trainable = True
-model.layers[4].trainable = True
-model.layers[7].trainable = True
-model.layers[8].trainable = True
-model.layers[10].trainable = True
-model.layers[12].trainable = True
-model.layers[14].trainable = True
+# model.layers[3].trainable = True
+# model.layers[4].trainable = True
+# model.layers[7].trainable = True
+# model.layers[8].trainable = True
+# model.layers[10].trainable = True
+# model.layers[12].trainable = True
+# model.layers[14].trainable = True
 
 
 for layer in model.layers:
