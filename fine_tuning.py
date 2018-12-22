@@ -24,8 +24,8 @@ im_size = 224
 INIT_LR = 0.1
 
 # Change the batchsize according to your system RAM
-train_batchsize = 200
-val_batchsize = 200
+train_batchsize = 50
+val_batchsize = 50
 
 vgg_conv = VGG16(
 	weights='imagenet',
