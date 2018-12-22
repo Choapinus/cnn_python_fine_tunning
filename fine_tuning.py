@@ -21,7 +21,11 @@ train_dir = './dataset/train'
 validation_dir = './dataset/validation'
 
 im_size = 224
-INIT_LR = 1e-3
+INIT_LR = 0.1
+
+# Change the batchsize according to your system RAM
+train_batchsize = 200
+val_batchsize = 200
 
 vgg_conv = VGG16(
 	weights='imagenet',
@@ -50,15 +54,39 @@ model.add(Dense(2, activation='softmax', name='predictions'))
 # In[12]:
 
 
-for layer in model.layers[:-8]: # last 8 layers will be trainable
-	layer.trainable = False
+# for layer in model.layers[:-8]: # last 8 layers will be trainable
+# 	layer.trainable = False
+
+# conv_layers: [0, 1, 3, 4, 6, 7, 8, 10, 11, 12, 14, 15, 16]
+# 0 => block1_conv1
+# 1 => block1_conv2
+# 3 => block2_conv1
+# 4 => block2_conv2
+# 6 => block3_conv1
+# 7 => block3_conv2
+# 8 => block3_conv3
+# 10 => block4_conv1
+# 11 => block4_conv2
+# 12 => block4_conv3
+# 14 => block5_conv1
+# 15 => block5_conv2
+# 16 => block5_conv3
+
+model.layers[3].trainable = True
+model.layers[4].trainable = True
+model.layers[7].trainable = True
+model.layers[8].trainable = True
+model.layers[10].trainable = True
+model.layers[12].trainable = True
+model.layers[14].trainable = True
+model.layers[15].trainable = True
+model.layers[16].trainable = True
+
 
 for layer in model.layers:
 	print(layer, layer.trainable)
 
 print('total layers:', model.layers.__len__())
-
-
 
 
 # In[15]:
@@ -76,10 +104,6 @@ train_datagen = ImageDataGenerator(
 )
 
 validation_datagen = ImageDataGenerator(rescale=1./255)
-
-# Change the batchsize according to your system RAM
-train_batchsize = 50
-val_batchsize = 50
 
 # Data Generator for Training data
 train_generator = train_datagen.flow_from_directory(
@@ -121,7 +145,7 @@ H = model.fit_generator(
 )
 
 # Save the Model
-model.save('lr_1e-3_last8_layers.h5')
+model.save('lr_0.1_certain_layers_60_40_train_test.h5')
 
 print("[INFO] ploting...")
 
