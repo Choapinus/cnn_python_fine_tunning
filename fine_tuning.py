@@ -77,11 +77,11 @@ for layer in model.layers: # last 8 layers will be trainable
 # si se hace esto, la gpu se queda sin memoria por algun motivo xd
 model.layers[3].trainable = True
 model.layers[4].trainable = True
-model.layers[7].trainable = True
-model.layers[8].trainable = True
+# model.layers[7].trainable = True
+# model.layers[8].trainable = True
 model.layers[10].trainable = True
-model.layers[12].trainable = True
-model.layers[14].trainable = True
+# model.layers[12].trainable = True
+# model.layers[14].trainable = True
 model.layers[15].trainable = True
 model.layers[16].trainable = True
 
