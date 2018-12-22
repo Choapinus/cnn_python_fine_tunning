@@ -41,6 +41,8 @@ model = Sequential()
 for layer in vgg_conv.layers: # without the last dense layer (that is the predict layer)
 	model.add(layer)
 
+del vgg_conv
+
 # add your dense layer with the mount of classes
 
 # model.add(Dense(250))
@@ -48,7 +50,7 @@ for layer in vgg_conv.layers: # without the last dense layer (that is the predic
 
 model.add(Flatten())
 model.add(Dense(2**13))
-model.add(Dense(2**9))
+# model.add(Dense(2**9))
 model.add(Dense(2, activation='softmax', name='predictions'))
 
 # In[12]:
@@ -72,10 +74,10 @@ model.add(Dense(2, activation='softmax', name='predictions'))
 # 15 => block5_conv2
 # 16 => block5_conv3
 
-model.layers[3].trainable = True
-model.layers[4].trainable = True
-model.layers[7].trainable = True
-model.layers[8].trainable = True
+# model.layers[3].trainable = True
+# model.layers[4].trainable = True
+# model.layers[7].trainable = True
+# model.layers[8].trainable = True
 model.layers[10].trainable = True
 model.layers[12].trainable = True
 model.layers[14].trainable = True
