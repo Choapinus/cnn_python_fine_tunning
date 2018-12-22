@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 from keras.preprocessing.image import ImageDataGenerator, load_img
 from keras.applications import VGG16
 from keras.models import Sequential
-from keras.layers import Dense
+from keras.layers import Dense, Flatten
 from keras.optimizers import SGD
 
 # In[19]:
