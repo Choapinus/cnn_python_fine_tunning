@@ -63,13 +63,13 @@ for layer in model.layers[:-8]: # last 8 layers will be trainable
 # 15 => block5_conv2
 # 16 => block5_conv3
 
-model.layers[3].trainable = False
-model.layers[4].trainable = False
-model.layers[7].trainable = False
-model.layers[8].trainable = False
-model.layers[10].trainable = False
-model.layers[12].trainable = False
-model.layers[14].trainable = False
+model.layers[3].trainable = True
+model.layers[4].trainable = True
+model.layers[7].trainable = True
+model.layers[8].trainable = True
+model.layers[10].trainable = True
+model.layers[12].trainable = True
+model.layers[14].trainable = True
 
 
 for layer in model.layers:
@@ -97,8 +97,8 @@ train_datagen = ImageDataGenerator(
 validation_datagen = ImageDataGenerator(rescale=1./255)
 
 # Change the batchsize according to your system RAM
-train_batchsize = 100
-val_batchsize = 100
+train_batchsize = 50
+val_batchsize = 50
 
 # Data Generator for Training data
 train_generator = train_datagen.flow_from_directory(
